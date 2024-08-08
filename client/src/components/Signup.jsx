@@ -12,13 +12,12 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userData = { name, email, password };
-      const data = await signupUser(userData); // Call the signup function
-      console.log('Signup successful:', data);
-      navigate('/'); // Redirect to the home page or other page after successful signup
-    } catch (err) {
-      console.error('Signup failed:', err.response?.data?.msg || err.message);
-      setError(err.response?.data?.msg || 'An error occurred');
+      const data = await signupUser({ name, email, password });
+      localStorage.setItem('token', data.token); // Store the token
+      navigate('/home'); // Redirect to the home page after signup
+    } catch (error) {
+      console.error('Signup failed:', error);
+      // Handle signup error
     }
   };
 

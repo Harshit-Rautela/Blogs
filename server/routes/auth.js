@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import {User} from '../models/Model.js';
+import auth from '../middleware/Auth.js'
 const router = express.Router();
 
 // Register a new user
@@ -34,7 +35,7 @@ router.post('/auth/register', async (req, res) => {
     const token = jwt.sign(payload, 'your_jwt_secret', { expiresIn: '1h' });
 
     // The server sends the generated JWT token back to the client in the response
-    res.status(201).json({ token });
+    res.status(201).json({ token, user: { name: user.name, email: user.email } });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -68,5 +69,17 @@ router.post('/auth/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+router.get('/auth/me', auth, async (req, res) => {
+  try {
+    // Get the user's data except for the passwordHash
+    const user = await User.findById(req.user).select('-passwordHash');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+
 
   export default router;

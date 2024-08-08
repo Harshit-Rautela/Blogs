@@ -24,6 +24,7 @@ function App() {
           <Route path="/all-blogs" element={<AllBlogs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/home" element={<Home/>} />
           <Route path="/get-started" element={<GettingStarted/>} />
         </Routes>
       </Router>
