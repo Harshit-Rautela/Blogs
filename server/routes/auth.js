@@ -69,10 +69,12 @@ router.post('/auth/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
 router.get('/auth/me', auth, async (req, res) => {
   try {
     // Get the user's data except for the passwordHash
     const user = await User.findById(req.user).select('-passwordHash');
+    //this user now contains name and email which is sent as JSON to frontend.
     res.json(user);
   } catch (err) {
     console.error(err.message);

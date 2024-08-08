@@ -17,7 +17,7 @@ const LogIn = () => {
       // Store the token or handle login success
       localStorage.setItem('token', data.token);
       console.log('Login successful:', data);
-      navigate('/')
+      navigate('/home');
     } catch (error) {
       console.error('Login failed:', error);
       // Handle login error
