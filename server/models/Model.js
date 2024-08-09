@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   }
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
+
 const BlogSchema =  mongoose.Schema({
   title: {
     type: String,

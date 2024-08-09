@@ -9,7 +9,9 @@ const auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, 'your_jwt_secret');
-    req.user = decoded.userId;
+    //here decoded will contain the payload which is inside the token when it was created.
+    //In our case it is the Id.
+    req.user = decoded.userId; 
     next();
   } catch (err) {
     res.status(401).json({ msg: 'Token is not valid' });
