@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createBlog } from '../services/BlogsApi';
+import BackButton from './Buttons/BackButton';
 
 const Create = () => {
   const [title, setTitle] = useState('');
@@ -29,7 +30,9 @@ const Create = () => {
 
   return (
     <div className="relative bg-cover bg-center min-h-screen" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      {/* <div className="absolute inset-0 bg-black bg-opacity-50"></div> */}
+      <BackButton />
+     
       <div className="relative container mx-auto p-8 flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-4xl font-bold text-white mb-8">Create a New Blog</h1>
         <form  className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-lg">

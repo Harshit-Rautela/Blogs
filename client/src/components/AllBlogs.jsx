@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserBlogs } from "../services/BlogsApi";
 import axios from "axios";
+import BackButton from "./Buttons/BackButton";
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -38,6 +39,8 @@ const AllBlogs = () => {
 
       <div className="relative container mx-auto py-12 px-6 text-white">
         <h1 className="text-4xl font-bold text-center mb-8">All Blogs</h1>
+        <BackButton/>
+        <br/>
 
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {blogs.length > 0 ? (
