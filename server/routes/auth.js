@@ -1,7 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {User} from '../models/Model.js';
+import { User} from '../models/Model.js';
 import auth from '../middleware/Auth.js'
 const router = express.Router();
 
@@ -41,34 +41,33 @@ router.post('/auth/register', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-  
   // Login a user
-router.post('/auth/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ msg: 'Invalid credentials' });
+  router.post('/auth/login', async (req, res) => {
+    const { email, password } = req.body;
+  
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(400).json({ msg: 'Invalid credentials' });
+      }
+  
+      // Check if password matches
+      const isMatch = await bcrypt.compare(password, user.passwordHash);
+      if (!isMatch) {
+        return res.status(400).json({ msg: 'Invalid credentials' });
+      }
+  
+      // Generate a JWT token
+      const payload = { userId: user._id };
+      const token = jwt.sign(payload, 'your_jwt_secret', { expiresIn: '1h' });
+  
+      // Respond with the token
+      res.json({ token });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
     }
-
-    // Check if password matches
-    const isMatch = await bcrypt.compare(password, user.passwordHash);
-    if (!isMatch) {
-      return res.status(400).json({ msg: 'Invalid credentials' });
-    }
-
-    // Generate a JWT token
-    const payload = { userId: user.id };
-    const token = jwt.sign(payload, 'your_jwt_secret', { expiresIn: '1h' });
-
-    // Respond with the token
-    res.json({ token });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
-  }
-});
+  });
 
 router.get('/auth/me', auth, async (req, res) => {
   try {
@@ -81,7 +80,5 @@ router.get('/auth/me', auth, async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
-
 
   export default router;

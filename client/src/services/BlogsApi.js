@@ -1,4 +1,3 @@
-// src/services/api.js
 import axios from 'axios';
 
 const api = axios.create({
@@ -10,7 +9,6 @@ const api = axios.create({
 
 // Function to create a blog
 export const createBlog = async (blogData, token) => {
-  console.log("HI")
   try {
     const response = await api.post('/', blogData, {
       headers: { 'x-auth-token': token },
@@ -28,5 +26,41 @@ export const getUserBlogs = async (token) => {
   });
   return response.data;
 };
+
+
+// // Function to get a blog by ID
+export const  getBlogById = async(id,token)=>{
+  try {
+    const response = await api.get(`/${id}`,{
+      headers:{'x-auth-token':token},
+    })
+    return response.data;
+  } catch (err) {
+    console.error("Error getting blog:" ,err);      
+  }
+}
+
+ // Function to update a blog by ID
+ export const updateBlog = async(id, updatedBlog, token)=>{
+  try {
+    const response = await api.put(`/${id}`, updatedBlog, {
+      headers:{'x-auth-token':token}
+    })
+    return response.data;
+  } catch (err) {
+    console.error("Error updating blog:" ,err);      
+  }  
+ }
+
+//  Function to delete a blog by ID
+export const deleteBlog = async(id, token)=>{
+  try {
+    await api.delete(`/${id}`,{
+      headers:{'x-auth-token':token}
+    })
+  } catch (err) {
+    console.error("Error deleting blog:", err);
+  }
+}
 
 export default api;

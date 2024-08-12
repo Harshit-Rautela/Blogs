@@ -25,6 +25,16 @@ const AllBlogs = () => {
     fetchBlogs();
   }, [navigate]);
 
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
+    await deleteBlog(id, token);
+    setBlogs(blogs.filter((blog) => blog._id !== id));
+  };
+
+  // const handleUpdate = (id) => {
+  //   navigate(`/update/${id}`);
+  // };
+
   const backgroundImageUrl =
     "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxvZ2dpbmd8ZW58MHx8MHx8fDA%3D";
 
@@ -54,12 +64,24 @@ const AllBlogs = () => {
                   <p className="text-gray-600 mb-4">
                     {blog.content.substring(0, 100)}...
                   </p>
-                  <div className="text-right">
+                  <div className="flex justify-between">
                     <button
-                      onClick={() => navigate(`/blog/${blog._id}`)}
+                      onClick={() => navigate(`/user/${blog._id}`)} // Updated path to match the new route
                       className="text-white bg-indigo-600 hover:bg-indigo-700 font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                     >
                       Read More
+                    </button>
+                    <button
+                      onClick={() => navigate(`/user/update/${blog._id}`)}
+                      className="text-white bg-green-600 hover:bg-green-700 font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() =>navigate(`/user/delete/${blog._id}`)}
+                      className="text-white bg-red-600 hover:bg-red-700 font-semibold py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    >
+                      Delete
                     </button>
                   </div>
                 </div>
