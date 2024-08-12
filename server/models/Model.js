@@ -25,9 +25,7 @@ const BlogSchema =  mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String, // Store the filename or URL of the uploaded image
-  },
+  
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
