@@ -1,5 +1,5 @@
 import express from 'express';
-import { config } from 'dotenv';
+
 import { PORT, MongoDBURL } from './config.js';
 import Blogrouter from './routes/Routes.js';
 import Userrouter from './routes/auth.js'
@@ -8,8 +8,7 @@ import { User } from './models/Model.js';
 import cors from 'cors'
 const app = express();
 
-// Load environment variables
-config();
+
 app.use(cors());
 
 app.use(express.json());
