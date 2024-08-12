@@ -26,7 +26,7 @@ router.post('/', auth, async (req, res) => {
 // Get all blogs for the logged-in user
 router.get('/user', auth, async (req, res) => {
   try {
-    const blogs = await Blog.find({ author: req.user.userId });
+    const blogs = await Blog.find({ authorId: req.user});
     res.json(blogs);
   } catch (error) {
     console.error(error.message);
