@@ -1,7 +1,7 @@
 // config.js
 import { config } from 'dotenv';
 
-// Load environment variables
+// config from dotenv will take up PORT and MongoDBURL from .env and put that into process.env here
 config();
 
 export const PORT = process.env.PORT || 5000;

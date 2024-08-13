@@ -16,7 +16,7 @@ const DeleteBlog = () => {
     try{
 
         await deleteBlog(id,token);
-        navigate('/home');
+        navigate('/all-blogs');
     }catch(err){
         console.error("The error is",err.message);
     }
@@ -44,7 +44,7 @@ const DeleteBlog = () => {
             Delete Blog
           </button>
           <button
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/all-blogs')}
             className="text-white bg-gray-600 hover:bg-gray-700 font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg ml-4"
           >
             Cancel

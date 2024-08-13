@@ -31,6 +31,11 @@ const BlogSchema =  mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  imageUrl: { // New field for storing the image URL
+    type: String,
+    required: false, // Not required, as some blogs may not have an image
+    trim: true,
+  },
 }, {
   timestamps: true, 
 });

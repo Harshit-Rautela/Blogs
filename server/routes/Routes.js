@@ -1,25 +1,36 @@
 import express from 'express';
 import { Blog } from '../models/Model.js';
 import auth from '../middleware/Auth.js';
+import fs from 'fs'
+import { upload } from '../middleware/FileAuth.js'; // Import the Multer middleware
+import uploadOnCloudinary from '../utils/Cloudinary.js'; // Import the Cloudinary utility
 
 const router = express.Router();
 
 // Create a new blog
-router.post('/', auth, async (req, res) => {
+router.post('/',auth, upload.single('file'), async (req, res) => {
   const { title, content } = req.body;
+
   try {
+    let fileUrl = '';
+    if (req.file) {
+      const uploadResult = await uploadOnCloudinary(req.file.path);     
+      fileUrl = uploadResult?.url || '';
+       fs.unlinkSync(req.file.path); // Remove the file from public/temp after uploading to Cloudinary
+    }
+    
     const newBlog = new Blog({
       title,
       content,
-      authorId: req.user,  // req.user is set by the auth middleware
+      imageUrl: fileUrl,
+      authorId: req.user,
     });
-
+    
     const savedBlog = await newBlog.save();
-    console.log('Saved Blog:', savedBlog);
     res.status(201).json(savedBlog);
   } catch (error) {
     console.error('Error Saving Blog:', error.message);
-    res.status(500).send('Server error');
+    res.status(500).send('AAAaaServer error');
   }
 });
 

@@ -10,15 +10,19 @@ const api = axios.create({
 // Function to create a blog
 export const createBlog = async (blogData, token) => {
   try {
-    const response = await api.post('/', blogData, {
-      headers: { 'x-auth-token': token },
+    console.log('HI')
+    const response = await api.post('/', blogData, { // Adjust the endpoint as needed
+      headers: {
+        'x-auth-token': token,
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   } catch (error) {
-    console.log("abc", error)
+    console.log("Error creating blog:", error.response ? error.response.data : error.message);
+    throw error;
   }
 };
-
 // Function to get all blogs for the logged-in user
 export const getUserBlogs = async (token) => {
   const response = await api.get('/user', {
