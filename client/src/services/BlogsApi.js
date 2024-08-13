@@ -10,7 +10,7 @@ const api = axios.create({
 // Function to create a blog
 export const createBlog = async (blogData, token) => {
   try {
-    console.log('HI')
+
     const response = await api.post('/', blogData, { // Adjust the endpoint as needed
       headers: {
         'x-auth-token': token,
