@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://blogging-ten-nu.vercel.app',
+  baseURL: 'https://blogs-464t.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
