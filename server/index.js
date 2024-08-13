@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { PORT, MongoDBURL } from './config.js';
+import {  MongoDBURL } from './config.js';
 import Blogrouter from './routes/Routes.js';
 import Userrouter from './routes/auth.js'
 import mongoose from 'mongoose';
@@ -8,6 +8,7 @@ import { User } from './models/Model.js';
 import cors from 'cors'
 const app = express();
 
+const PORT=5000 ;
 
 app.use(cors());
 
@@ -25,10 +26,12 @@ mongoose
   .connect(MongoDBURL)
   .then(() => {
     console.log('App connected to MongoDB database');
-    app.listen(PORT, () => {
-      console.log(`App is listening to port: ${PORT}`);
-    });
   })
   .catch((error) => {
     console.log(error);
   });
+
+
+app.listen(PORT, () => {
+  console.log(`App is listening to port: ${PORT}`);
+});
