@@ -12,7 +12,11 @@ const PORT=5000 ;
 
    
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://blogging-aahn.vercel.app', 
+  credentials: true
+}));
+
 app.get('/', (request, response) => {
     console.log(request);
     return response.status(234).send('Welcome To Blogging');
