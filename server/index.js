@@ -8,7 +8,7 @@ import { User } from './models/Model.js';
 import cors from 'cors'
 const app = express();
 
-const PORT=5000 ;
+const PORT='https://blogging-ten-nu.vercel.app/'||5000 ;
 
    
 app.use(express.json());
