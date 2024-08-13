@@ -19,7 +19,7 @@ const Home = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/auth/me",
+          "https://blogging-ten-nu.vercel.app/auth/me",
           {
             headers: { "x-auth-token": token },
           }

@@ -22,7 +22,7 @@ app.get('/', (request, response) => {
     return response.status(234).send('Welcome To Blogging');
   });
   
-  app.use('/',[Userrouter])
+  app.use('/auth',[Userrouter])
   app.use('/',[Blogrouter])
 
 mongoose
