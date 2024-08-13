@@ -19,7 +19,7 @@ const Home = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/blogs/auth/me",
+          "http://localhost:5000/auth/me",
           {
             headers: { "x-auth-token": token },
           }

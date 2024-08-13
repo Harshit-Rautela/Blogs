@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance with default configurations
 const api = axios.create({
-  baseURL: 'https://blogging-ten-nu.vercel.app/api/blogs', // Your backend base URL
+  baseURL: 'https://blogging-ten-nu.vercel.app', // Your backend base URL
   headers: {
     'Content-Type': 'application/json',
   },

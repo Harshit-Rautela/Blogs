@@ -10,20 +10,16 @@ const app = express();
 
 const PORT=5000 ;
 
-app.use(cors({
-  origin: 'https://blogging-aahn.vercel.app', 
-  credentials: true
-}));
-
+   
 app.use(express.json());
-
+app.use(cors());
 app.get('/', (request, response) => {
     console.log(request);
     return response.status(234).send('Welcome To Blogging');
   });
   
-  app.use('/api/blogs',[Userrouter])
-  app.use('/api/blogs',[Blogrouter])
+  app.use('/',[Userrouter])
+  app.use('/',[Blogrouter])
 
 mongoose
   .connect(MongoDBURL)
