@@ -1,30 +1,31 @@
 import axios from 'axios';
 
-// Create an Axios instance with default configurations
-const api = axios.create({
-  baseURL: 'https://blogs-464t.onrender.com', // Your backend base URL
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
 
 // Function to handle user signup
-export const signupUser = async (userData) => {
+ const signupUser = async (userData) => {
   try {
-    const response = await api.post('/auth/register', userData);
+    const response = await axios.post('http://localhost:5000/auth/register', userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data; // Returns the response data, which might include a token
   } catch (error) {
     throw error; // Rethrow the error to handle it in the component
   }
 };
 
-export const loginUser = async (userData) => {
+ const loginUser = async (userData) => {
     try {
-      const response = await api.post('/auth/login', userData);
+      const response = await axios.post('http://localhost:5000/auth/login', userData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       return response.data; // Returns the response data, which might include a token
     } catch (error) {
       throw error; // Rethrow the error to handle it in the component
     }
   };
 
-  export default api;
+  export { signupUser, loginUser };

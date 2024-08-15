@@ -19,7 +19,7 @@ const Home = () => {
         }
 
         const response = await axios.get(
-          "https://blogs-464t.onrender.com/auth/me",
+          "http://localhost:5000/auth/me",
           {
             headers: { "x-auth-token": token },
           }
