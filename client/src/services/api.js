@@ -4,7 +4,7 @@ import axios from 'axios';
 // Function to handle user signup
  const signupUser = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:5000/auth/register', userData, {
+    const response = await axios.post('https://blogs-5i36.onrender.com/auth/register', userData, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -17,7 +17,7 @@ import axios from 'axios';
 
  const loginUser = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:5000/auth/login', userData, {
+      const response = await axios.post('https://blogs-5i36.onrender.com/auth/login', userData, {
         headers: {
           'Content-Type': 'application/json',
         },
