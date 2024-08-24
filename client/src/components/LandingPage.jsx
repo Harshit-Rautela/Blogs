@@ -9,7 +9,7 @@ const LandingPage = () => {
     <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="relative container mx-auto flex flex-col items-center justify-center h-full text-center">
-        <h1 className="text-5xl font-bold text-white mb-4">Welcome to My Blog</h1>
+        <h1 className="text-5xl font-bold text-white mb-4">Welcome to BlogNest</h1>
         <p className="text-lg text-white mb-8">Discover amazing content and insights</p>
         <Link to="/get-started">
           <button className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">
